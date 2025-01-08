@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interval Timer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #2d3436;
+        }
+        .timers-container {
+            display: flex;
+            gap: 40px;
+            margin: 20px;
+        }
+        .timer-box {
+            text-align: center;
+            padding: 30px;
+            border-radius: 16px;
+            min-width: 220px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: none;
+        }
+        #workTimer {
+            background: linear-gradient(145deg, #ffffff, #f0f9ff);
+            border-left: 4px solid #3b82f6;
+        }
+        #breakTimer {
+            background: linear-gradient(145deg, #ffffff, #fff7ed);
+            border-left: 4px solid #f97316;
+        }
+        .timer {
+            font-size: 54px;
+            margin: 15px 0;
+            font-weight: 700;
+            color: #1e293b;
+            font-variant-numeric: tabular-nums;
+        }
+        .phase {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .active {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .button-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 12px;
+            background-color: #3b82f6;
+            color: white;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        button:disabled {
+            background-color: #e2e8f0;
+            color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        #pauseBtn {
+            background-color: #f97316;
+        }
+        #resetBtn {
+            background-color: #ef4444;
+        }
+        .elapsed-container {
+            margin-top: 30px;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .elapsed-label {
+            font-size: 16px;
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .elapsed-time {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .title {
+            font-size: 42px;
+            color: #1e293b;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 800;
+        }
+        
+        @media (max-width: 480px) {
+            .timers-container {
+                gap: 16px;
+                flex-direction: column;
+            }
+            
+            .timer-box {
+                min-width: 260px;
+                padding: 24px;
+            }
+            
+            .timer {
+                font-size: 48px;
+            }
+            
+            .phase {
+                font-size: 16px;
+            }
+            
+            .title {
+                font-size: 32px;
+                margin-bottom: 30px;
+            }
+            
+            button {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+            
+            .elapsed-time {
+                font-size: 24px;
+            }
+        }
+    </style>
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1 class="title">Interval Timer</h1>
+    <div class="timers-container">
+        <div class="timer-box active" id="workTimer">
+            <div class="phase">Work Time</div>
+            <div class="timer" id="workDisplay">45</div>
+        </div>
+        <div class="timer-box" id="breakTimer">
+            <div class="phase">Break Time</div>
+            <div class="timer" id="breakDisplay">15</div>
+        </div>
+    </div>
+    <div class="button-container">
+        <button onclick="startTimer()" id="startBtn">Start</button>
+        <button onclick="pauseTimer()" id="pauseBtn">Pause</button>
+        <button onclick="resetTimer()" id="resetBtn">Reset</button>
+    </div>
+    <div class="elapsed-container">
+        <div class="elapsed-label">Total Time Elapsed:</div>
+        <div class="elapsed-time" id="elapsedDisplay">00:00</div>
+    </div>
+</body>
+</html> 
